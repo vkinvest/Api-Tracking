@@ -1,2 +1,26 @@
-f
-jg
+import pandas as pd
+import chart_studio.plotly as py
+import plotly.graph_objs as go
+
+
+charts = pd.read_excel('yield curve chart.xlsx').T
+charts.columns = charts.T['Date']
+
+def scatter():
+    charts_list = []
+    num = 1
+
+    for col in charts.columns:
+        charts_bar = go.Scatter(
+            name=str(col.strftime("%Y/%m/%d")),
+            x=charts.index[1:],
+            y=charts[col]
+        )
+        num +=1
+        print(col)
+        charts_list.append(charts_bar)
+    fig_is = go.Figure(data=charts_list, layout=go.Layout(barmode='stack'))
+    py.plot(fig_is, filename='2021 yield curve - Jan')
+
+
+scatter()
