@@ -11,7 +11,6 @@ soma.set_index('As Of Date').sort_index()
 
 def scatter():
     charts_list = []
-    num = 1
 
     for col in soma.columns[1:]:
         charts_bar = go.Scatter(
@@ -19,7 +18,6 @@ def scatter():
             x=soma['As Of Date'],
             y=soma[col]
         )
-        num +=1
         print(col)
         charts_list.append(charts_bar)
     fig_is = go.Figure(data=charts_list, layout=go.Layout(barmode='stack'))
