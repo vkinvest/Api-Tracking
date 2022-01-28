@@ -46,6 +46,15 @@ def fed_rate():
     plt.plot(high.Value)
     plt.show()
 
+
+def employment_cost_index():
+    eci = quandl.get("FRED/CIU2020000120000I", authtoken=token)
+    plt.figure(figsize=(12, 6))
+    plt.title('employment_cost_index()', fontsize=14)
+    plt.plot(eci)
+    plt.show()
+
+
 token ='9TqZsnUWPvsBMUoyRvKx'
 
 potential_gdp()
@@ -53,3 +62,4 @@ gdp_growth()
 unemployment()
 cpi()
 fed_rate()
+employment_cost_index()
