@@ -9,10 +9,8 @@ charts = pd.read_excel('yield curve chart.xlsx').T
 charts.columns = charts.T['Date']
 charts = charts[1:]
 
-
 def scatter():
     charts_list = []
-    num = 1
 
     for col in charts.columns:
         charts_bar = go.Scatter(
@@ -20,7 +18,6 @@ def scatter():
             x=charts.index,
             y=charts[col]
         )
-        num +=1
         print(col)
         charts_list.append(charts_bar)
     fig_is = go.Figure(data=charts_list, layout=go.Layout(barmode='stack'))
