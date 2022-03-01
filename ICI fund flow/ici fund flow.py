@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-class ICIFundFLow:
+class ICIFundfLow:
 
     def __init__(self):
         self.data = pd.read_excel('mm_summary_data_2022.xls').set_index('Date')
@@ -20,6 +20,6 @@ class ICIFundFLow:
         plt.show()
 
 
-ici = ICIFundFLow()
+ici = ICIFundfLow()
 ici.value()
 ici.change()
