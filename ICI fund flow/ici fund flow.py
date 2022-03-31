@@ -8,30 +8,21 @@ from urllib.request import urlopen
 
 class ICIFundfLow:
     def __init__(self):
-        self.mmf = pd.read_excel('mm_summary_data_2022.xls').set_index('index')
+        self.mmf = pd.read_excel('money_market_2022.xlsx').set_index('index')
+        self.etf_mutual = pd.read_excel('etf_mutual_fund_2022.xlsx').set_index('index')
 
     def mmf_amount(self):
         plt.figure(figsize=(12, 6))
         plt.plot(self.mmf['INSTITUTIONAL'], label='Institutional')
         plt.plot(self.mmf['RETAIL'], label='Retail')
-        leg = plt.legend(loc='lower right')
+        plt.legend(loc='lower left')
         plt.show()
 
     def mmf_changes(self):
         plt.figure(figsize=(12, 6))
         plt.plot(self.mmf['change1'], label='Institutional % changes')
         plt.plot(self.mmf['change2'], label='Retail % changes')
-        leg = plt.legend(loc='lower right')
-        plt.show()
-
-    @staticmethod
-    def asset_classes():
-        plt.figure(figsize=(12, 6))
-        plt.plot(etf_mutual['equity'], label='equity')
-        plt.plot(etf_mutual['bond'], label='bond')
-        plt.plot(etf_mutual['commodity'], label='commodity')
-        leg = plt.legend(loc='lower right')
-        plt.title("Fund FLows of Asset CLasses and Estimates")
+        plt.legend(loc='lower right')
         plt.show()
 
     def inst_vs_index(self):
@@ -67,13 +58,43 @@ class ICIFundfLow:
         plt.title("Institutional MMF flows vs SP500 index")
         plt.show()
 
+    def asset_classes(self):
+        plt.figure(figsize=(12, 6))
+        plt.plot(self.etf_mutual['equity'], label='equity')
+        plt.plot(self.etf_mutual['bond'], label='bond')
+        plt.plot(self.etf_mutual['commodity'], label='commodity')
+        plt.title("Fund FLows of Asset CLasses and Estimates")
+        plt.legend(loc='lower right')
+        plt.show()
+
+    def assets_pct(self):
+        plt.figure(figsize=(12, 6))
+        plt.plot(self.etf_mutual['change1'], label='equity')
+        plt.plot(self.etf_mutual['change2'], label='bond')
+        plt.plot(self.etf_mutual['change3'], label='commodity')
+        plt.title("Pct Changes of Asset CLasses fund flows")
+        plt.legend(loc='lower right')
+        plt.show()
+
+    def assets_pct_begin(self):
+        from_date = '2021'
+        etf_mutual = self.etf_mutual.loc[self.etf_mutual['Date'][from_date:]]
+        plt.figure(figsize=(12, 6))
+        plt.plot(etf_mutual['equity']/etf_mutual['equity'][0], label='equity')
+        plt.plot(etf_mutual['bond']/etf_mutual['bond'][0], label='bond')
+        plt.plot(etf_mutual['commodity']/etf_mutual['commodity'][0], label='commodity')
+        plt.title(f"Pct Changes of Asset CLasses from {etf_mutual['Date'][0]}")
+        plt.legend(loc='lower right')
+        plt.show()
 
 api_key = 'e95137f175e3fba84a1220c74e5ecd2a'
 today = dt.date.today()
-etf_mutual = pd.read_excel('combined_flows_data_2022-2.xls').set_index('index')
+
 
 ici = ICIFundfLow()
 ici.mmf_amount()
 ici.mmf_changes()
 ici.inst_vs_index()
 ici.asset_classes()
+ici.assets_pct()
+ici.assets_pct_begin()
