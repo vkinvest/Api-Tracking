@@ -24,16 +24,6 @@ class ICIFundfLow:
         leg = plt.legend(loc='lower right')
         plt.show()
 
-    @staticmethod
-    def asset_classes():
-        plt.figure(figsize=(12, 6))
-        plt.plot(etf_mutual['equity'], label='equity')
-        plt.plot(etf_mutual['bond'], label='bond')
-        plt.plot(etf_mutual['commodity'], label='commodity')
-        leg = plt.legend(loc='lower right')
-        plt.title("Fund FLows of Asset CLasses and Estimates")
-        plt.show()
-
     def inst_vs_index(self):
         def spx_hist_close():
             ticker = 'GSPC'
@@ -65,6 +55,16 @@ class ICIFundfLow:
         y2.set_ylim(-0.04, 0.04)
         plt.legend(loc='lower right')
         plt.title("Institutional MMF flows vs SP500 index")
+        plt.show()
+
+    @staticmethod
+    def asset_classes():
+        plt.figure(figsize=(12, 6))
+        plt.plot(etf_mutual['equity'], label='equity')
+        plt.plot(etf_mutual['bond'], label='bond')
+        plt.plot(etf_mutual['commodity'], label='commodity')
+        leg = plt.legend(loc='lower right')
+        plt.title("Fund FLows of Asset CLasses and Estimates")
         plt.show()
 
 
