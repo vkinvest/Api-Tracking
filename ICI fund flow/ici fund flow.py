@@ -87,9 +87,9 @@ class ICIFundfLow:
         plt.legend(loc='lower right')
         plt.show()
 
+
 api_key = 'e95137f175e3fba84a1220c74e5ecd2a'
 today = dt.date.today()
-
 
 ici = ICIFundfLow()
 ici.mmf_amount()
