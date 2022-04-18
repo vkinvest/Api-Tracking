@@ -55,7 +55,7 @@ class ICIFundfLow:
         y2 = compare['Institutional MMF'].plot(secondary_y=True, label='Institutional MMF %change')
         y2.set_ylim(-0.04, 0.04)
         plt.legend(loc='lower right')
-        plt.title("Institutional MMF flows vs SP500 index")
+        plt.title("Weekly Institutional MMF flows vs SP500 index")
         plt.show()
 
     def asset_classes(self):
@@ -72,7 +72,7 @@ class ICIFundfLow:
         plt.plot(self.etf_mutual['change1'], label='equity')
         plt.plot(self.etf_mutual['change2'], label='bond')
         plt.plot(self.etf_mutual['change3'], label='commodity')
-        plt.title("Pct Changes of Asset CLasses fund flows")
+        plt.title(f"Pct Changes of Asset CLasses fund flows after {self.etf_mutual['Date'][1]}")
         plt.legend(loc='lower right')
         plt.show()
 
@@ -83,7 +83,7 @@ class ICIFundfLow:
         plt.plot(etf_mutual['equity']/etf_mutual['equity'][0], label='equity')
         plt.plot(etf_mutual['bond']/etf_mutual['bond'][0], label='bond')
         plt.plot(etf_mutual['commodity']/etf_mutual['commodity'][0], label='commodity')
-        plt.title(f"Pct Changes of Asset CLasses from {etf_mutual['Date'][0]}")
+        plt.title(f"Pct Changes of Asset Classes after {etf_mutual['Date'][0]}")
         plt.legend(loc='lower right')
         plt.show()
 
